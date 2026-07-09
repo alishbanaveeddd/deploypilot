@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kuard-test
+  namespace: final
+  labels:
+    app: kuard-test
+    managed-by: deploypilot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kuard-test
+  template:
+    metadata:
+      labels:
+        app: kuard-test
+    spec:
+      containers:
+      - name: kuard-test
+        image: kuard-test:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /healthy
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /healthy
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        resources:
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
+          requests:
+            cpu: "100m"
+            memory: "128Mi"

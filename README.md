@@ -1,0 +1,115 @@
+<h1 align="center">
+  <br>
+  🚀 DeployPilot
+  <br>
+</h1>
+
+<h4 align="center">A Kubernetes-Based Auto Scaling SaaS Platform</h4>
+
+<p align="center">
+  <a href="#features">Features</a> •
+  <a href="#architecture">Architecture</a> •
+  <a href="#screenshots">Screenshots</a> •
+  <a href="#local-setup">Local Setup</a> •
+  <a href="#contributing">Contributing</a>
+</p>
+
+---
+
+## 📖 Overview
+
+**DeployPilot** is a powerful, modern, and intuitive Software-as-a-Service (SaaS) platform built to automate the deployment, scaling, and management of containerized applications on Kubernetes. 
+
+Designed for developers who want the simplicity of serverless platforms (like Vercel or Heroku) but the underlying power and flexibility of Kubernetes, DeployPilot takes your GitHub repository and automatically containerizes, deploys, and monitors your application in real-time.
+
+## ✨ Features
+
+- **Automated Deployments:** Give it a Git repository URL, and DeployPilot automatically clones, builds a Docker image, and deploys it to your Kubernetes cluster.
+- **Dynamic Namespace Routing:** Isolate environments (e.g., `staging`, `production`, `testing`) seamlessly.
+- **Real-time Log Streaming:** Watch your deployment and build progress live in the browser.
+- **Beautiful Dashboard:** Built with Next.js, featuring a sleek, responsive, and dark-mode optimized UI.
+- **Live Kubernetes Metrics:** View Pod statuses, ReplicaSets, active Services, and Cluster events in real-time.
+- **Zero-Downtime Rollouts:** Monitor progressive rollout statuses to ensure high availability.
+- **Live YAML Manifests:** Inspect the exact auto-generated Deployment and Service YAML manifests applied to your cluster directly from the UI.
+
+## 🏗️ Architecture
+
+DeployPilot is split into a highly decoupled architecture:
+
+* **Frontend (Next.js & React):** A modern SPA that provides a seamless user experience, deployed with beautiful UI components and reactive states.
+* **Backend (Node.js & Express):** The engine room. It orchestrates `git`, `docker`, and `kubectl` commands, manages CORS, routes dynamic namespaces, and streams logs back to the frontend.
+* **Infrastructure:** Powered by **Kubernetes** (Minikube/k3s) for container orchestration and **Docker** for image building.
+
+---
+
+## 📸 Screenshots
+
+*(Add your screenshots here by saving them to a `docs/` folder!)*
+
+### Applications Dashboard
+![Dashboard](./docs/dashboard.png)
+
+### Live YAML Manifests
+![YAML Manifests](./docs/manifests.png)
+
+### Overview & Configuration
+![Overview](./docs/overview.png)
+
+### Pods & Events Monitoring
+![Pods & Events](./docs/pods.png)
+
+---
+
+## 🚀 Local Setup
+
+Want to run DeployPilot on your own machine? Follow these steps carefully.
+
+### Prerequisites
+Before you begin, ensure you have the following installed on your system:
+1. [Node.js](https://nodejs.org/) (v18 or higher)
+2. [Docker](https://www.docker.com/) (Running locally)
+3. [Minikube](https://minikube.sigs.k8s.io/docs/start/) or a local Kubernetes cluster
+4. [kubectl](https://kubernetes.io/docs/tasks/tools/)
+5. [Git](https://git-scm.com/)
+
+### 1. Start your Kubernetes Cluster
+Start Minikube and ensure `kubectl` is configured to use it:
+```bash
+minikube start
+kubectl cluster-info
+```
+
+### 2. Clone the Repository
+```bash
+git clone https://github.com/yourusername/deploypilot.git
+cd deploypilot
+```
+
+### 3. Start the Backend
+The backend orchestrates the deployments.
+```bash
+# In the root directory
+npm install
+node index.js
+```
+*The backend will start running on http://localhost:3000.*
+
+### 4. Start the Frontend
+Open a new terminal window/tab.
+```bash
+cd frontend
+npm install
+npm run dev
+```
+*The frontend will start running on http://localhost:3001.*
+
+### 5. Access the Platform
+Open your browser and navigate to `http://localhost:3001`. You can now deploy any public GitHub repository directly to your local Kubernetes cluster!
+
+---
+
+## 🤝 Contributing
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/yourusername/deploypilot/issues).
+
+## 📝 License
+This project is licensed under the MIT License.

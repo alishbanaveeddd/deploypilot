@@ -1,0 +1,335 @@
+======================================================================
+DEPLOYPILOT KUBERNETES DIAGNOSTIC REPORT
+Generated at: 2026-07-09T04:24:20.196Z
+======================================================================
+
+----------------------------------------------------------------------
+> Minikube Status (minikube status)
+----------------------------------------------------------------------
+minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+
+
+
+----------------------------------------------------------------------
+> Current Kubernetes Config Context (kubectl config current-context)
+----------------------------------------------------------------------
+minikube
+
+
+----------------------------------------------------------------------
+> Cluster General Info (kubectl cluster-info)
+----------------------------------------------------------------------
+Kubernetes control plane is running at https://127.0.0.1:53957
+CoreDNS is running at https://127.0.0.1:53957/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+
+
+----------------------------------------------------------------------
+> Active Nodes Details (kubectl get nodes -o wide)
+----------------------------------------------------------------------
+NAME       STATUS   ROLES           AGE   VERSION   INTERNAL-IP    EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION                      CONTAINER-RUNTIME
+minikube   Ready    control-plane   26h   v1.35.1   192.168.49.2   <none>        Debian GNU/Linux 12 (bookworm)   6.18.33.2-microsoft-standard-WSL2   docker://29.2.1
+
+
+----------------------------------------------------------------------
+> Deployments (All Namespaces) (kubectl get deployments -A)
+----------------------------------------------------------------------
+NAMESPACE     NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+default       kuard-app   0/2     1            0           3h34m
+kube-system   coredns     1/1     1            1           26h
+
+
+----------------------------------------------------------------------
+> Pod Instances Status (Default Namespace) (kubectl get pods -o wide)
+----------------------------------------------------------------------
+NAME                         READY   STATUS             RESTARTS       AGE     IP            NODE       NOMINATED NODE   READINESS GATES
+kuard-app-5787bf95fb-bh9fl   0/1     CrashLoopBackOff   10 (53s ago)   3h34m   10.244.0.22   minikube   <none>           <none>
+kuard-app-5787bf95fb-bzv8m   0/1     CrashLoopBackOff   9 (9s ago)     3h34m   10.244.0.21   minikube   <none>           <none>
+kuard-app-85dcf55bc7-zfvwf   0/1     Running            9 (9s ago)     3h29m   10.244.0.23   minikube   <none>           <none>
+
+
+----------------------------------------------------------------------
+> Pod Details Descriptions (kubectl describe pods) (kubectl describe pods)
+----------------------------------------------------------------------
+Name:             kuard-app-5787bf95fb-bh9fl
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             minikube/192.168.49.2
+Start Time:       Thu, 09 Jul 2026 05:50:24 +0500
+Labels:           app=kuard-app
+                  pod-template-hash=5787bf95fb
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.22
+IPs:
+  IP:           10.244.0.22
+Controlled By:  ReplicaSet/kuard-app-5787bf95fb
+Containers:
+  kuard-app:
+    Container ID:   docker://1e19859d9a721ac43fd64a44a85e89c13228998a4296aaab39e6c0a12838634d
+    Image:          kuard-app:latest
+    Image ID:       docker://sha256:c0df0fae3afa248c61fa8e4e03fd36b36e0d06b5a85a5b8c66efe8afeeb8bfc0
+    Port:           8080/TCP
+    Host Port:      0/TCP
+    State:          Waiting
+      Reason:       CrashLoopBackOff
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    2
+      Started:      Thu, 09 Jul 2026 09:22:33 +0500
+      Finished:     Thu, 09 Jul 2026 09:23:32 +0500
+    Ready:          False
+    Restart Count:  10
+    Limits:
+      cpu:     250m
+      memory:  256Mi
+    Requests:
+      cpu:      100m
+      memory:   128Mi
+    Liveness:   http-get http://:8080/health delay=15s timeout=1s period=20s #success=1 #failure=3
+    Readiness:  http-get http://:8080/health delay=10s timeout=1s period=10s #success=1 #failure=3
+    Environment:
+      PORT:  8080
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-t6wmc (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-t6wmc:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+
+
+Name:             kuard-app-5787bf95fb-bzv8m
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             minikube/192.168.49.2
+Start Time:       Thu, 09 Jul 2026 05:50:23 +0500
+Labels:           app=kuard-app
+                  pod-template-hash=5787bf95fb
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.21
+IPs:
+  IP:           10.244.0.21
+Controlled By:  ReplicaSet/kuard-app-5787bf95fb
+Containers:
+  kuard-app:
+    Container ID:   docker://aab2acd124b33e8a198bf51fd2f83d2f0e553949ccf099679b8633e72e3b9d7e
+    Image:          kuard-app:latest
+    Image ID:       docker://sha256:c0df0fae3afa248c61fa8e4e03fd36b36e0d06b5a85a5b8c66efe8afeeb8bfc0
+    Port:           8080/TCP
+    Host Port:      0/TCP
+    State:          Waiting
+      Reason:       CrashLoopBackOff
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    2
+      Started:      Thu, 09 Jul 2026 09:23:13 +0500
+      Finished:     Thu, 09 Jul 2026 09:24:16 +0500
+    Ready:          False
+    Restart Count:  9
+    Limits:
+      cpu:     250m
+      memory:  256Mi
+    Requests:
+      cpu:      100m
+      memory:   128Mi
+    Liveness:   http-get http://:8080/health delay=15s timeout=1s period=20s #success=1 #failure=3
+    Readiness:  http-get http://:8080/health delay=10s timeout=1s period=10s #success=1 #failure=3
+    Environment:
+      PORT:  8080
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-dlhwl (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-dlhwl:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+
+
+Name:             kuard-app-85dcf55bc7-zfvwf
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             minikube/192.168.49.2
+Start Time:       Thu, 09 Jul 2026 05:55:00 +0500
+Labels:           app=kuard-app
+                  pod-template-hash=85dcf55bc7
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.23
+IPs:
+  IP:           10.244.0.23
+Controlled By:  ReplicaSet/kuard-app-85dcf55bc7
+Containers:
+  kuard-app:
+    Container ID:   docker://7483398d13048579c2f58f060b768cb5773766a47b788368bd797e55da5336c9
+    Image:          kuard-app:latest
+    Image ID:       docker://sha256:c0df0fae3afa248c61fa8e4e03fd36b36e0d06b5a85a5b8c66efe8afeeb8bfc0
+    Port:           3000/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Thu, 09 Jul 2026 09:24:18 +0500
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    2
+      Started:      Thu, 09 Jul 2026 09:23:00 +0500
+      Finished:     Thu, 09 Jul 2026 09:24:16 +0500
+    Ready:          False
+    Restart Count:  9
+    Limits:
+      cpu:     250m
+      memory:  256Mi
+    Requests:
+      cpu:      100m
+      memory:   128Mi
+    Liveness:   http-get http://:3000/health delay=15s timeout=1s period=20s #success=1 #failure=3
+    Readiness:  http-get http://:3000/health delay=10s timeout=1s period=10s #success=1 #failure=3
+    Environment:
+      PORT:  8080
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-dbzvn (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-dbzvn:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+
+
+----------------------------------------------------------------------
+> Recent Kubernetes Event Logs (Default Namespace) (kubectl get events --sort-by=.metadata.creationTimestamp -n default)
+----------------------------------------------------------------------
+LAST SEEN   TYPE      REASON              OBJECT                            MESSAGE
+4h15m       Warning   ErrImageNeverPull   pod/kuard-app-5787bf95fb-h259j    Container image "kuard-app:latest" is not present with pull policy of Never
+4h13m       Warning   ErrImageNeverPull   pod/kuard-app-598b559888-tf8m4    Container image "kuard-app:latest" is not present with pull policy of Never
+4h13m       Warning   ErrImageNeverPull   pod/kuard-app-7f6c9d48b4-pcnbf    Container image "kuard-app:latest" is not present with pull policy of Never
+4h13m       Normal    ScalingReplicaSet   deployment/kuard-app              Scaled down replica set kuard-app-5787bf95fb from 1 to 0
+4h13m       Normal    ScalingReplicaSet   deployment/kuard-app              Scaled up replica set kuard-app-69bc7697b4 from 0 to 1
+4h13m       Normal    SuccessfulCreate    replicaset/kuard-app-69bc7697b4   Created pod: kuard-app-69bc7697b4-2jzxk
+4h13m       Normal    SuccessfulDelete    replicaset/kuard-app-5787bf95fb   Deleted pod: kuard-app-5787bf95fb-h259j
+4h13m       Normal    Scheduled           pod/kuard-app-69bc7697b4-2jzxk    Successfully assigned default/kuard-app-69bc7697b4-2jzxk to minikube
+4h11m       Warning   ErrImageNeverPull   pod/kuard-app-69bc7697b4-2jzxk    Container image "kuard-app:latest" is not present with pull policy of Never
+4h11m       Warning   Failed              pod/kuard-app-69bc7697b4-2jzxk    Error: ErrImageNeverPull
+4h9m        Normal    SuccessfulCreate    replicaset/kuard-app-5864c58cd4   Created pod: kuard-app-5864c58cd4-5bkfq
+4h9m        Normal    SuccessfulCreate    replicaset/kuard-app-5864c58cd4   Created pod: kuard-app-5864c58cd4-gpgxj
+4h9m        Normal    Scheduled           pod/kuard-app-5864c58cd4-gpgxj    Successfully assigned default/kuard-app-5864c58cd4-gpgxj to minikube
+4h9m        Normal    ScalingReplicaSet   deployment/kuard-app              Scaled up replica set kuard-app-5864c58cd4 from 0 to 2
+4h9m        Normal    Scheduled           pod/kuard-app-5864c58cd4-5bkfq    Successfully assigned default/kuard-app-5864c58cd4-5bkfq to minikube
+4h1m        Normal    Created             pod/kuard-app-5864c58cd4-5bkfq    Container created
+3h58m       Normal    Pulled              pod/kuard-app-5864c58cd4-5bkfq    Container image "kuard-app:latest" already present on machine and can be accessed by the pod
+4h1m        Normal    Created             pod/kuard-app-5864c58cd4-gpgxj    Container created
+3h58m       Normal    Pulled              pod/kuard-app-5864c58cd4-gpgxj    Container image "kuard-app:latest" already present on machine and can be accessed by the pod
+4h4m        Normal    Started             pod/kuard-app-5864c58cd4-gpgxj    Container started
+4h4m        Normal    Started             pod/kuard-app-5864c58cd4-5bkfq    Container started
+4h6m        Warning   Unhealthy           pod/kuard-app-5864c58cd4-5bkfq    Readiness probe failed: Get "http://10.244.0.18:808/health": dial tcp 10.244.0.18:808: connect: connection refused
+4h6m        Warning   Unhealthy           pod/kuard-app-5864c58cd4-gpgxj    Readiness probe failed: Get "http://10.244.0.19:808/health": dial tcp 10.244.0.19:808: connect: connection refused
+4h3m        Warning   Unhealthy           pod/kuard-app-5864c58cd4-5bkfq    Liveness probe failed: Get "http://10.244.0.18:808/health": dial tcp 10.244.0.18:808: connect: connection refused
+4h3m        Warning   Unhealthy           pod/kuard-app-5864c58cd4-gpgxj    Liveness probe failed: Get "http://10.244.0.19:808/health": dial tcp 10.244.0.19:808: connect: connection refused
+4h3m        Normal    Killing             pod/kuard-app-5864c58cd4-5bkfq    Container kuard-app failed liveness probe, will be restarted
+4h3m        Normal    Killing             pod/kuard-app-5864c58cd4-gpgxj    Container kuard-app failed liveness probe, will be restarted
+3h53m       Warning   BackOff             pod/kuard-app-5864c58cd4-gpgxj    Back-off restarting failed container kuard-app in pod kuard-app-5864c58cd4-gpgxj_default(b296df19-dcdb-48b3-a0fa-120f61940264)
+3h53m       Warning   BackOff             pod/kuard-app-5864c58cd4-5bkfq    Back-off restarting failed container kuard-app in pod kuard-app-5864c58cd4-5bkfq_default(a0b832b7-c9e7-410e-9ddf-0ef8f9b2f248)
+3h49m       Normal    SuccessfulCreate    replicaset/kuard-app-f477ffbbd    Created pod: kuard-app-f477ffbbd-58dj5
+3h49m       Normal    ScalingReplicaSet   deployment/kuard-app              Scaled up replica set kuard-app-f477ffbbd from 0 to 1
+3h49m       Normal    Scheduled           pod/kuard-app-f477ffbbd-58dj5     Successfully assigned default/kuard-app-f477ffbbd-58dj5 to minikube
+3h46m       Normal    Pulled              pod/kuard-app-f477ffbbd-58dj5     Container image "kuard-app:latest" already present on machine and can be accessed by the pod
+3h46m       Normal    Created             pod/kuard-app-f477ffbbd-58dj5     Container created
+3h46m       Normal    Started             pod/kuard-app-f477ffbbd-58dj5     Container started
+3h47m       Warning   Unhealthy           pod/kuard-app-f477ffbbd-58dj5     Readiness probe failed: HTTP probe failed with statuscode: 404
+3h47m       Warning   Unhealthy           pod/kuard-app-f477ffbbd-58dj5     Liveness probe failed: HTTP probe failed with statuscode: 404
+3h46m       Normal    Killing             pod/kuard-app-f477ffbbd-58dj5     Container kuard-app failed liveness probe, will be restarted
+3h46m       Normal    Killing             pod/kuard-app-f477ffbbd-58dj5     Stopping container kuard-app
+3h34m       Normal    SuccessfulCreate    replicaset/kuard-app-5787bf95fb   Created pod: kuard-app-5787bf95fb-bh9fl
+3h34m       Normal    Scheduled           pod/kuard-app-5787bf95fb-bzv8m    Successfully assigned default/kuard-app-5787bf95fb-bzv8m to minikube
+3h34m       Normal    Scheduled           pod/kuard-app-5787bf95fb-bh9fl    Successfully assigned default/kuard-app-5787bf95fb-bh9fl to minikube
+3h34m       Normal    ScalingReplicaSet   deployment/kuard-app              Scaled up replica set kuard-app-5787bf95fb from 0 to 2
+3h34m       Normal    SuccessfulCreate    replicaset/kuard-app-5787bf95fb   Created pod: kuard-app-5787bf95fb-bzv8m
+3h19m       Normal    Pulled              pod/kuard-app-5787bf95fb-bh9fl    Container image "kuard-app:latest" already present on machine and can be accessed by the pod
+2m13s       Normal    Pulled              pod/kuard-app-5787bf95fb-bzv8m    Container image "kuard-app:latest" already present on machine and can be accessed by the pod
+3h26m       Normal    Created             pod/kuard-app-5787bf95fb-bh9fl    Container created
+3h26m       Normal    Created             pod/kuard-app-5787bf95fb-bzv8m    Container created
+3h29m       Normal    Started             pod/kuard-app-5787bf95fb-bzv8m    Container started
+3h29m       Normal    Started             pod/kuard-app-5787bf95fb-bh9fl    Container started
+3h31m       Warning   Unhealthy           pod/kuard-app-5787bf95fb-bh9fl    Liveness probe failed: HTTP probe failed with statuscode: 404
+3h33m       Warning   Unhealthy           pod/kuard-app-5787bf95fb-bh9fl    Readiness probe failed: Get "http://10.244.0.22:8080/health": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+3h31m       Warning   Unhealthy           pod/kuard-app-5787bf95fb-bzv8m    Liveness probe failed: HTTP probe failed with statuscode: 404
+3h33m       Warning   Unhealthy           pod/kuard-app-5787bf95fb-bzv8m    Readiness probe failed: Get "http://10.244.0.21:8080/health": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+3h18m       Warning   Unhealthy           pod/kuard-app-5787bf95fb-bh9fl    Readiness probe failed: HTTP probe failed with statuscode: 404
+2m          Warning   Unhealthy           pod/kuard-app-5787bf95fb-bzv8m    Readiness probe failed: HTTP probe failed with statuscode: 404
+3h28m       Normal    Killing             pod/kuard-app-5787bf95fb-bzv8m    Container kuard-app failed liveness probe, will be restarted
+3h16m       Normal    Killing             pod/kuard-app-5787bf95fb-bh9fl    Container kuard-app failed liveness probe, will be restarted
+3h29m       Normal    SuccessfulCreate    replicaset/kuard-app-85dcf55bc7   Created pod: kuard-app-85dcf55bc7-zfvwf
+3h29m       Normal    Scheduled           pod/kuard-app-85dcf55bc7-zfvwf    Successfully assigned default/kuard-app-85dcf55bc7-zfvwf to minikube
+3h29m       Normal    ScalingReplicaSet   deployment/kuard-app              Scaled up replica set kuard-app-85dcf55bc7 from 0 to 1
+3h22m       Normal    Created             pod/kuard-app-85dcf55bc7-zfvwf    Container created
+3h19m       Normal    Pulled              pod/kuard-app-85dcf55bc7-zfvwf    Container image "kuard-app:latest" already present on machine and can be accessed by the pod
+3h24m       Normal    Started             pod/kuard-app-85dcf55bc7-zfvwf    Container started
+3h18m       Warning   Unhealthy           pod/kuard-app-85dcf55bc7-zfvwf    Readiness probe failed: Get "http://10.244.0.23:3000/health": dial tcp 10.244.0.23:3000: connect: connection refused
+3h26m       Warning   Unhealthy           pod/kuard-app-85dcf55bc7-zfvwf    Liveness probe failed: Get "http://10.244.0.23:3000/health": dial tcp 10.244.0.23:3000: connect: connection refused
+3h23m       Normal    Killing             pod/kuard-app-85dcf55bc7-zfvwf    Container kuard-app failed liveness probe, will be restarted
+3h23m       Warning   BackOff             pod/kuard-app-5787bf95fb-bzv8m    Back-off restarting failed container kuard-app in pod kuard-app-5787bf95fb-bzv8m_default(8b657e43-174b-407d-baf9-4b028e768b43)
+3h22m       Warning   BackOff             pod/kuard-app-5787bf95fb-bh9fl    Back-off restarting failed container kuard-app in pod kuard-app-5787bf95fb-bh9fl_default(7a2d748b-e61c-4d10-a4d9-14eec2631b69)
+
+
+----------------------------------------------------------------------
+> Docker Images Cache loaded in Minikube (minikube image list)
+----------------------------------------------------------------------
+registry.k8s.io/pause:3.10.1
+registry.k8s.io/kube-scheduler:v1.35.1
+registry.k8s.io/kube-proxy:v1.35.1
+registry.k8s.io/kube-controller-manager:v1.35.1
+registry.k8s.io/kube-apiserver:v1.35.1
+registry.k8s.io/etcd:3.6.6-0
+registry.k8s.io/coredns/coredns:v1.13.1
+gcr.io/k8s-minikube/storage-provisioner:v5
+docker.io/library/kuard-app:latest
+docker.io/library/hello-k8s:latest
+
+

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kuard-test-service
+  namespace: final
+  labels:
+    app: kuard-test
+    managed-by: deploypilot
+spec:
+  selector:
+    app: kuard-test
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: NodePort
