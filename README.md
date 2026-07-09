@@ -16,7 +16,27 @@
   <a href="#local-setup">Local Setup</a> •
   <a href="#contributing">Contributing</a>
 </p>
+# 🚀 DeployPilot
 
+A cloud-native deployment platform that automates Git repository cloning, Docker image building, and Kubernetes deployments through a modern web dashboard.
+
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Node.js](https://img.shields.io/badge/Node.js-22-green)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-Ready-326CE5)
+
+---
+
+## ✨ Features
+
+- 🚀 One-click application deployments
+- 📦 Automatic Git repository cloning
+- 🐳 Docker image building
+- ☸️ Kubernetes Deployment & Service generation
+- 📊 Deployment monitoring
+- 📜 Application status API
+- 🔄 Redeploy applications
+- 📈 Production-ready architecture
 ---
 
 ## 📖 Overview
