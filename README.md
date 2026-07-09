@@ -62,9 +62,16 @@ DeployPilot is split into a highly decoupled architecture:
 ![Pods & Events](./docs/pods.png)
 
 ---
-## Introductory Videos
-https://github.com/user-attachments/assets/caeb0c95-f23e-487e-a5d6-52868a2883b5
-https://github.com/user-attachments/assets/0d484f27-d610-4c36-a988-a999ddcb96f1
+## Introductory Video
+
+a small visual introduction to the project:
+https://github.com/user-attachments/assets/6108a6bf-1707-43f2-b1cb-20cfe5039df1
+
+
+visuals to docker, container :
+https://github.com/user-attachments/assets/0a5661bd-8e51-4148-aa52-26150bc887a9
+
+
 
 
 ## 🚀 Local Setup
