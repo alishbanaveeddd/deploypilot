@@ -65,7 +65,7 @@ DeployPilot is split into a highly decoupled architecture:
 
 ## 📸 Screenshots
 
-*(Add your screenshots here by saving them to a `docs/` folder!)*
+
 
 ### Applications Dashboard
 <img width="947" height="437" alt="image" src="https://github.com/user-attachments/assets/3880fd4c-7838-4a7c-9f17-8049f2d070ab" />
