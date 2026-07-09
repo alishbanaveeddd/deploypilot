@@ -51,15 +51,22 @@ DeployPilot is split into a highly decoupled architecture:
 
 ### Applications Dashboard
 ![Dashboard](./docs/dashboard.png)
+<img width="947" height="437" alt="image" src="https://github.com/user-attachments/assets/3880fd4c-7838-4a7c-9f17-8049f2d070ab" />
+<img width="947" height="431" alt="image" src="https://github.com/user-attachments/assets/b4ed310f-bc43-447e-93ea-d3a1ad953395" />
+
 
 ### Live YAML Manifests
 ![YAML Manifests](./docs/manifests.png)
+<img width="676" height="360" alt="image" src="https://github.com/user-attachments/assets/d3b7f407-650a-4832-8de0-ffa8974d301e" />
+
 
 ### Overview & Configuration
-![Overview](./docs/overview.png)
+![Overview](./docs/overview.png)<img width="685" height="313" alt="image" src="https://github.com/user-attachments/assets/be641313-3111-42a7-9096-ebb3bd38371c" />
+
 
 ### Pods & Events Monitoring
-![Pods & Events](./docs/pods.png)
+![Pods & Events](./docs/pods.png)<img width="681" height="295" alt="image" src="https://github.com/user-attachments/assets/390d2d35-6f11-4f3f-8986-bf05ad902f23" />
+
 
 ---
 ## Introductory Video
