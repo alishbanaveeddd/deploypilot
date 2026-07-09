@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/caeb0c95-f23e-487e-a5d6-52868a2883b5
+
 <h1 align="center">
   <br>
   🚀 DeployPilot
@@ -59,6 +63,10 @@ DeployPilot is split into a highly decoupled architecture:
 ![Pods & Events](./docs/pods.png)
 
 ---
+
+
+https://github.com/user-attachments/assets/0d484f27-d610-4c36-a988-a999ddcb96f1
+
 
 ## 🚀 Local Setup
 
