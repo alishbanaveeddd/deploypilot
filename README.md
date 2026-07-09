@@ -67,17 +67,13 @@ DeployPilot is split into a highly decoupled architecture:
 
 
 ---
-## Introductory Video
+## 🎥 Project Overview
 
-a small visual introduction to the project:
 https://github.com/user-attachments/assets/6108a6bf-1707-43f2-b1cb-20cfe5039df1
 
+## 🐳 Docker & Containers Explained
 
-visuals to docker, container :
 https://github.com/user-attachments/assets/0a5661bd-8e51-4148-aa52-26150bc887a9
-
-
-
 
 ## 🚀 Local Setup
 
